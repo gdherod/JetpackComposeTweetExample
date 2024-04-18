@@ -1,30 +1,73 @@
 package com.example.jetpackcomposetweetexample
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetpackcomposetweetexample.ui.theme.JetpackComposeTweetExampleTheme
 
 @Composable
 fun TweetScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .background(Color(0xFF161026))
             .padding(16.dp)
+
     ) {
-        Avatar(Modifier.align(Alignment.TopStart))
+        Avatar(modifier = Modifier)
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Row(Modifier.fillMaxWidth()) {
+                TextTitle(title = "Gary", Modifier.padding(end = 8.dp))
+                DefaultText(title = "@Garuxa", Modifier.padding(end = 8.dp))
+                DefaultText(title = "4h", Modifier.padding(end = 8.dp))
+                Icon(
+                    painterResource(id = R.drawable.ic_dots),
+                    contentDescription = "dots",
+                    tint = Color.White
+                )
+            }
+            TextBody(
+                text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+                        + "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, "
+                        + "when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            )
+        }
     }
+}
+
+@Composable
+fun TextBody(text: String) {
+    Text(text = text, color = Color.White)
+}
+
+@Composable
+fun TextTitle(title: String, modifier: Modifier = Modifier) {
+    Text(text = title, color = Color.White, fontWeight = FontWeight.ExtraBold, modifier = modifier)
+}
+
+@Composable
+fun DefaultText(title: String, modifier: Modifier = Modifier) {
+    Text(text = title, color = Color.Gray, modifier = modifier)
 }
 
 @Composable
@@ -33,7 +76,9 @@ fun Avatar(modifier: Modifier) {
         painter = painterResource(id = R.drawable.mewtwo),
         contentDescription = "avatar",
         contentScale = ContentScale.Crop,
-        modifier = modifier.size(64.dp).clip(CircleShape)
+        modifier = modifier
+            .size(55.dp)
+            .clip(CircleShape)
     )
 }
 
