@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -60,7 +61,8 @@ fun TweetScreen() {
                 Icon(
                     painterResource(id = R.drawable.ic_dots),
                     contentDescription = "dots",
-                    tint = Color.White
+                    tint = Color.White,
+                    modifier = Modifier.padding(start = 100.dp)
                 )
             }
             TextBody(
@@ -138,6 +140,16 @@ fun TweetScreen() {
             }
         }
     }
+}
+
+@Composable
+fun TweetDivider() {
+    Divider(
+        Modifier
+            .padding(top = 4.dp)
+            .height(0.8.dp)
+            .fillMaxWidth(), color = Color(0xFF7E8B98)
+    )
 }
 
 @Composable
