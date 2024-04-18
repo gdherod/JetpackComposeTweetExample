@@ -5,9 +5,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,15 +51,32 @@ fun TweetScreen() {
             TextBody(
                 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
                         + "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, "
-                        + "when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                        + "when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                Modifier.padding(bottom = 16.dp)
             )
+            PostImage()
         }
     }
 }
 
 @Composable
-fun TextBody(text: String) {
-    Text(text = text, color = Color.White)
+fun PostImage() {
+    Image(
+        painter = painterResource(id = R.drawable.mewtwo),
+        contentDescription = "post image",
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+            .clip(
+                RoundedCornerShape(10)
+            ),
+        contentScale = ContentScale.Crop
+    )
+}
+
+@Composable
+fun TextBody(text: String, modifier: Modifier = Modifier) {
+    Text(text = text, color = Color.White, modifier = modifier)
 }
 
 @Composable
